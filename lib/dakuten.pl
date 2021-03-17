@@ -12,7 +12,6 @@ sub is_local {
     # 特に指定がなければローカル扱い
     return 1;
   }
-
   return $env == 'local';
 }
 
