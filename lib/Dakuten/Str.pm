@@ -1,4 +1,5 @@
 package Dakuten::Str;
+
 use strict;
 use warnings FATAL => 'all';
 use Encode;

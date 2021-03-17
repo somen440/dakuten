@@ -1,4 +1,5 @@
 package Dakuten::Time;
+
 use strict;
 use warnings FATAL => 'all';
 

@@ -7,6 +7,6 @@ COPY cpanfile /usr/src/app/cpanfile
 RUN cpanm --installdeps .
 
 # copy app
-COPY ./lib /usr/src/app
+COPY . /usr/src/app
 
-CMD ["./dakuten.pl"]
+CMD ["./lib/dakuten.pl"]

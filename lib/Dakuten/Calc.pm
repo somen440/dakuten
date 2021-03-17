@@ -1,4 +1,5 @@
 package Dakuten::Calc;
+
 use strict;
 use warnings FATAL => 'all';
 
