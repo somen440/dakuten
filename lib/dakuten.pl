@@ -63,7 +63,11 @@ post '/ping' => sub {
     return
   }
 
-  $res->{text} = $params->param('text');
+  my $text = $params->param('text');
+  if ($text == '') {
+    $text = 'なにかいれてよぉ〜〜〜〜〜〜〜。';
+  }
+  $res->{text} = Dakuten::Str::conv_dakuten($text);
   $c->render(json => $res);
 };
 post '/hoge' => sub {

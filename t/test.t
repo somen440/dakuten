@@ -7,6 +7,7 @@ use Digest::SHA qw(hmac_sha256_hex);
 use lib './lib';
 use Dakuten::Calc;
 use Dakuten::Time;
+use Dakuten::Str;
 
 subtest 'sample test' => sub {
   is(length('perl'), 4, 'length test');
@@ -61,6 +62,18 @@ subtest 'hmac sha256' => sub {
   my $hash = hmac_sha256_hex($base_text, $test_secret);
 
   is($hash, '4a001ae370a61160141796e3f94c5ea01cbc79757e4c370e78a793f5b2dfcae8', 'hash');
+};
+
+subtest 'test dakuten' => sub {
+  my @tests = (
+    {str => 'ががぎぎぐぐげげごご', expected => 'ががぎぎぐぐげげごご', title => '全て濁点のまま'},
+    {str => 'かかききくくけけここ', expected => 'ががぎぎぐぐげげごご', title => '変換して全て濁点へ'},
+    {str => 'たのしいいい', expected => 'だのじい"い"い"', title => '変換ありなし両方あり'},
+  );
+  foreach my $tt(@tests) {
+    my $actual = Dakuten::Str::conv_dakuten($tt->{str});
+    is($actual, $tt->{expected}, $tt->{title});
+  }
 };
 
 done_testing();
